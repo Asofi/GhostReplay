@@ -16,21 +16,21 @@ public class DataPresistance : MonoBehaviour
     public void Save(Vector2[] Path)
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + "/FileName.dat", FileMode.Create);
+        FileStream file = File.Open(Application.dataPath + "/Resources/Paths/FileName.dat", FileMode.Create);
         PlayerClass newData = new PlayerClass();
         newData.positions = Vector2ToSerializable(Path);
         bf.Serialize(file, newData);
         file.Close();
-        print("Path saved to " + Application.persistentDataPath + "/FileName.dat");
+        print("Path saved to " + Application.dataPath + "/Resources/Paths/FileName.dat");
     }
 
     public void Load()
     {
 
-        if (File.Exists(Application.persistentDataPath + "/FileName.dat"))
+        if (File.Exists(Application.dataPath + "/Resources/Paths/FileName.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/FileName.dat", FileMode.Open);
+            FileStream file = File.Open(Application.dataPath + "/Resources/Paths/FileName.dat", FileMode.Open);
             PlayerClass newData = (PlayerClass)bf.Deserialize(file);
             file.Close();
             LoadedPath = SerializableToVector2(newData.positions);
