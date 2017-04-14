@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityStandardAssets.Effects;
 
 
 namespace UnityStandardAssets.SceneUtils
@@ -37,7 +36,6 @@ namespace UnityStandardAssets.SceneUtils
         public EventSystem eventSystem;
 
 
-        private ParticleSystemMultiplier m_ParticleMultiplier;
         private List<Transform> m_CurrentParticleList = new List<Transform>();
         private Transform m_Instance;
         private static int s_SelectedIndex = 0;
@@ -128,10 +126,6 @@ namespace UnityStandardAssets.SceneUtils
                         {
                             m_Instance = (Transform) Instantiate(s_Selected.transform, pos, rot);
 
-                            if (m_ParticleMultiplier != null)
-                            {
-                                m_Instance.GetComponent<ParticleSystemMultiplier>().multiplier = multiply;
-                            }
 
                             m_CurrentParticleList.Add(m_Instance);
 
@@ -203,7 +197,6 @@ namespace UnityStandardAssets.SceneUtils
             {
                 s_Selected.transform.gameObject.SetActive(true);
             }
-            m_ParticleMultiplier = s_Selected.transform.GetComponent<ParticleSystemMultiplier>();
             multiply = 1;
             if (clearOnChange)
             {
